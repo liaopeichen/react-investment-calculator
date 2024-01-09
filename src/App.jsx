@@ -10,6 +10,11 @@ function App() {
 
   return (
     <main>
+      {duration < 1 && (
+        <p className="center">
+          The duration must be greater than or equal to 1.
+        </p>
+      )}
       <div id="user-input">
         <UserInput
           label="initial investment"
