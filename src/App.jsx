@@ -29,7 +29,12 @@ function App() {
         <UserInput label="duration" value={duration} onChange={setDuration} />
       </div>
       <div id="result">
-        <Result />
+        <Result
+          initialInvestment={initialInvestment}
+          annualInvestment={annualInvestment}
+          expectedReturn={expectedReturn}
+          duration={duration}
+        />
       </div>
     </main>
   );
