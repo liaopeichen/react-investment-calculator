@@ -1,10 +1,8 @@
 import { useState } from "react";
 
-export default function UserInput({ label }) {
-  const [userInput, setUserInput] = useState("");
-
+export default function UserInput({ label, value, onChange }) {
   function handleInputChange(event) {
-    setUserInput(event.target.value);
+    onChange(event.target.value);
   }
 
   return (
@@ -14,7 +12,7 @@ export default function UserInput({ label }) {
         id={label}
         type="number"
         onChange={handleInputChange}
-        value={userInput}
+        value={value}
       />
     </div>
   );
