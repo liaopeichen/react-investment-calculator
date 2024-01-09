@@ -1,46 +1,35 @@
 import { useState } from "react";
-import Result from "./components/Result";
 import UserInput from "./components/UserInput";
+import Results from "./components/Results";
 
 function App() {
-  const [initialInvestment, setInitialInvestment] = useState("");
-  const [annualInvestment, setAnnualInvestment] = useState("");
-  const [expectedReturn, setExpectedReturn] = useState("");
-  const [duration, setDuration] = useState("");
+  const [userInput, setUserInput] = useState({
+    initialInvestment: 10000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10,
+  });
+
+  const inputIsValid = userInput.duration >= 1;
+
+  function handleInputChange(inputIdentifier, newValue) {
+    setUserInput((prevUserInput) => {
+      return {
+        ...prevUserInput,
+        [inputIdentifier]: +newValue,
+      };
+    });
+  }
 
   return (
     <main>
-      {duration < 1 && (
+      <UserInput userInput={userInput} onChange={handleInputChange} />
+      {!inputIsValid && (
         <p className="center">
           The duration must be greater than or equal to 1.
         </p>
       )}
-      <div id="user-input">
-        <UserInput
-          label="initial investment"
-          value={initialInvestment}
-          onChange={setInitialInvestment}
-        />
-        <UserInput
-          label="annual investment"
-          value={annualInvestment}
-          onChange={setAnnualInvestment}
-        />
-        <UserInput
-          label="expected return"
-          value={expectedReturn}
-          onChange={setExpectedReturn}
-        />
-        <UserInput label="duration" value={duration} onChange={setDuration} />
-      </div>
-      <div id="result">
-        <Result
-          initialInvestment={initialInvestment}
-          annualInvestment={annualInvestment}
-          expectedReturn={expectedReturn}
-          duration={duration}
-        />
-      </div>
+      {inputIsValid && <Results input={userInput} />}
     </main>
   );
 }
