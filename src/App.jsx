@@ -1,3 +1,4 @@
+import Result from "./components/Result";
 import UserInput from "./components/UserInput";
 
 function App() {
@@ -8,6 +9,9 @@ function App() {
         <UserInput label="annual investment" />
         <UserInput label="expected return" />
         <UserInput label="duration" />
+      </div>
+      <div id="result">
+        <Result />
       </div>
     </main>
   );
